@@ -1,0 +1,4 @@
+---
+
+- name: Setup check
+  debug: msg="Running on {{ inventory_hostname }}"
