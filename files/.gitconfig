@@ -1,0 +1,9 @@
+[alias]
+	ls = log --pretty=format:"%C(yellow)%h\\ [%ad]\\%Cred%d\\ %Creset%s%Cblue\\ [%an]\\ [%cn]" --decorate --date=short
+	ll = log --pretty=format:"%C(yellow)%h\\ [%ad]\\%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --numstat --date=short
+[init]
+	templatedir = ~/.gittemplates
+[core]
+	excludesfile = ~/.gitignore_global
+[push]
+	default = simple

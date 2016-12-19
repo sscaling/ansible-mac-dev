@@ -1,0 +1,14 @@
+---
+
+- name: Bash profile
+  copy:
+    src: "{{ item }}"
+    dest: "~/{{ item }}"
+    mode: 0600
+    backup: yes
+  with_items:
+    - .bash_profile
+    - .bash_aliases
+    - .gitconfig
+    - .gitignore_global
+
