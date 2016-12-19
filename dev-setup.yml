@@ -5,4 +5,5 @@
   gather_facts: no
   tasks:
     - include: tasks/main.yml
+    - include: tasks/software.yml
 
