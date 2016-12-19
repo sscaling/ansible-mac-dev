@@ -9,3 +9,10 @@ basic setup for Mac dev machine
 ## Deploy
 
 	ansible-playbook -i localhost dev-setup.yml
+
+
+# TODO
+
+* Docker
+** + DVM
+* DNSMasq

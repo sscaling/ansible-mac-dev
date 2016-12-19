@@ -6,3 +6,23 @@
   args:
     creates: /usr/local/bin/brew
 
+- name: Brew software
+  command: /usr/local/bin/brew install {{ item }} creates=/usr/local/bin/{{ item }}
+  with_items:
+    - git
+    - go
+    - gradle
+    - jq
+    - kafkacat
+    - nload
+    - nmap
+    - node
+    - openconnect
+    - python
+    - python3
+    - sbt
+    - tree
+    - watch
+    - wget
+
+
