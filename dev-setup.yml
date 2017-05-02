@@ -7,4 +7,4 @@
     - include: tasks/main.yml
     - include: tasks/profile.yml
     - include: tasks/software.yml
-
+    - include: tasks/go.yml
