@@ -2,9 +2,18 @@
 
 # http://brew.sh/
 - name: Brew
-  command: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   args:
     creates: /usr/local/bin/brew
+  tags:
+    - software
+
+- name: Java
+  command: /usr/local/bin/brew cask install java
+  args:
+    creates: /usr/bin/java
+  tags:
+    - software
 
 - name: Brew software
   command: /usr/local/bin/brew install {{ item }} creates=/usr/local/bin/{{ item }}
@@ -25,5 +34,7 @@
     - watch
     - wget
     - bash-completion
+  tags:
+    - software
 
 

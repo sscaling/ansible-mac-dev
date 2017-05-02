@@ -7,3 +7,10 @@
 	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
+
+[user]
+	name = Shaun Scaling
+	email = shaun@shaunscaling.com
+
+[github]
+	user = sscaling

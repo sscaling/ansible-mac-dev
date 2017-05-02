@@ -1,14 +1,38 @@
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
+#!/bin/bash
 
-if [ -f ~/.profile ]; then
-    source ~/.profile
-fi
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+for file in ~/.{bash_prompt,aliases,functions,path,dockerfunc,extra,exports}; do
+	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+		# shellcheck source=/dev/null
+		source "$file"
+	fi
+done
+unset file
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 6)\]\t \[$(tput setaf 2)\]\w\[$(tput setaf 4)\] \\$ \[$(tput sgr0)\]"
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
 
-#golang installed via brew
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+	shopt -s "$option" 2> /dev/null
+done
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config
+# ignoring wildcards
+[[ -e "$HOME/.ssh/config" ]] && complete -o "default" \
+	-o "nospace" \
+	-W "$(grep "^Host" ~/.ssh/config | \
+	grep -v "[?*]" | cut -d " " -f2 | \
+	tr ' ' '\n')" scp sftp ssh
 
 

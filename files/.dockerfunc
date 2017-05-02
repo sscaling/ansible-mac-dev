@@ -1,0 +1,42 @@
+#!/bin/bash
+# Bash wrappers for docker run commands
+
+#export DOCKER_REPO_PREFIX=jess
+
+#
+# Helper Functions
+#
+dcleanup(){
+	local containers
+	containers=( $(docker ps -aq 2>/dev/null) )
+	docker rm "${containers[@]}" 2>/dev/null
+	local volumes
+	volumes=( $(docker ps --filter status=exited -q 2>/dev/null) )
+	docker rm -v "${volumes[@]}" 2>/dev/null
+	local images
+	images=( $(docker images --filter dangling=true -q 2>/dev/null) )
+	docker rmi "${images[@]}" 2>/dev/null
+}
+del_stopped(){
+	local name=$1
+	local state
+	state=$(docker inspect --format "{{.State.Running}}" "$name" 2>/dev/null)
+
+	if [[ "$state" == "false" ]]; then
+		docker rm "$name"
+	fi
+}
+dockerls() {
+  docker ps | grep -v CONTAINER | awk '{i++; printf "%s %-50s %s\n", i, $NF, $2}'
+}
+
+dockermnt() {
+  CONTAINER=`docker ps | grep -v "CONTAINER ID" | awk -F' ' '{print $NF}' | head -n $1 | tail -n 1`
+  docker exec -i -t $CONTAINER /bin/bash
+}
+
+dockerip() {
+  docker inspect --format '{{printf "%s %s" .NetworkSettings.IPAddress .Name  }}' `docker ps | grep -v CONTAINER | awk '{print $NF}'`
+}
+
+

@@ -1,7 +1,7 @@
 ---
 
 - hosts: localhost
-  sudo: no
+  #sudo: no
   gather_facts: no
   tasks:
     - include: tasks/main.yml
