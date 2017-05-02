@@ -37,4 +37,8 @@
   tags:
     - software
 
+- name: Docker
+  command: /usr/local/bin/brew cask install docker
+  args:
+    creates: /Applications/Docker.app
 
