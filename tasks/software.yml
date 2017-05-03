@@ -37,8 +37,14 @@
   tags:
     - software
 
-- name: Docker
-  command: /usr/local/bin/brew cask install docker
+- name: Brew Cask Software
+  command: /usr/local/bin/brew cask install {{ item.name }}
   args:
-    creates: /Applications/Docker.app
-
+    creates: /Applications/{{ item.app }}.app
+  with_items:
+    - name: docker
+      app: Docker
+    - name: spectacle
+      app: Spectacle
+  tags:
+    - software
