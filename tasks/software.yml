@@ -46,5 +46,7 @@
       app: Docker
     - name: spectacle
       app: Spectacle
+    - name: slack
+      app: Slack
   tags:
     - software
