@@ -20,6 +20,4 @@ basic setup for Mac dev machine
 
 # TODO
 
-* Docker
-	* DVM
 * DNSMasq

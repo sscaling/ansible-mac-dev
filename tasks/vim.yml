@@ -1,0 +1,27 @@
+---
+
+# Ref: https://github.com/fatih/vim-go-tutorial
+
+- name: vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.vim/autoload/plug.vim
+    mode: 0440
+  tags:
+    - vim
+
+- name: vim-go
+  git:
+    repo: https://github.com/fatih/vim-go.git
+    dest: ~/.vim/plugged/vim-go
+  tags:
+    - vim
+
+- name: .vimrc
+  copy:
+    src: .vimrc
+    dest: ~/.vimrc
+    mode: 0600
+    backup: yes
+  tags:
+    - vim

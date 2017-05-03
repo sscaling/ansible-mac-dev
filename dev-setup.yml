@@ -8,3 +8,4 @@
     - include: tasks/profile.yml
     - include: tasks/software.yml
     - include: tasks/go.yml
+    - include: tasks/vim.yml
