@@ -2,11 +2,21 @@
 
 # Ref: https://github.com/fatih/vim-go-tutorial
 
+- name: neo-vim
+  shell: brew tap neovim/neovim && brew install neovim
+  args:
+    creates: /usr/local/Cellar/neovim
+  tags:
+    - vim
+
 - name: vim-plug
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: ~/.vim/autoload/plug.vim
+    dest: "{{ item }}"
     mode: 0440
+  items:
+    - ~/.vim/autoload/plug.vim
+    - ~/.config/nvim/autoload/plug.vim
   tags:
     - vim
 
@@ -14,6 +24,21 @@
   git:
     repo: https://github.com/fatih/vim-go.git
     dest: ~/.vim/plugged/vim-go
+    update: no
+  tags:
+    - vim
+
+- name: ansible-vim
+  git:
+    repo: https://github.com/pearofducks/ansible-vim.git
+    dest: ~/.vim/plugged/ansible-vim
+  tags:
+    - vim
+
+- name: vim-dispatch
+  git:
+    repo: git://github.com/tpope/vim-dispatch.git
+    dest: ~/.vim/plugged/vim-dispatch
   tags:
     - vim
 
@@ -23,5 +48,13 @@
     dest: ~/.vimrc
     mode: 0600
     backup: yes
+  tags:
+    - vim
+
+- name: neovim init.vim symlink
+  file:
+    src: ~/.vimrc
+    path: ~/.config/nvim/init.vim
+    state: link
   tags:
     - vim
