@@ -17,6 +17,9 @@ basic setup for Mac dev machine
 
 	ansible-playbook -i localhost dev-setup.yml
 
+### Vimrc
+
+As this constantly changes, there is a useful 'vimrc' tag, to only update .vimrc
 
 # TODO
 

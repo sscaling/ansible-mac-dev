@@ -50,6 +50,7 @@
     backup: yes
   tags:
     - vim
+    - vimrc
 
 - name: neovim init.vim symlink
   file:
