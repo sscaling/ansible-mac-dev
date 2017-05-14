@@ -16,4 +16,5 @@
     - .path
     - .gitconfig
     - .gitignore_global
-
+  tags:
+    - profile

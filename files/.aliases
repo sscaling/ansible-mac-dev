@@ -55,4 +55,4 @@ clearws() {
   sed -E -i.wsbak -e's/[[:space:]]*$//' "$1"
 }
 
-
+alias nv=nvim
