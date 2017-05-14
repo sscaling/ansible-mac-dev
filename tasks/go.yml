@@ -12,7 +12,12 @@
 
 - name: Go tools
   command: go get -u {{ item }}
+  args:
+    creates: ~/go/src/{{item}}
   with_items:
     - github.com/golang/lint/golint
+    - github.com/shurcooL/markdownfmt
+    # For deoplete-go completion
+    - github.com/nsf/gocode
   tags:
     - go

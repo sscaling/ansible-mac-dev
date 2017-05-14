@@ -9,6 +9,15 @@
   tags:
     - vim
 
+# Required for deoplete autocompletion
+- name: neo-vim python packages
+  command: "{{ item }} install --user neovim"
+  with_items:
+    - pip2
+    - pip3
+  tags:
+    - vim
+
 - name: vim-plug
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
