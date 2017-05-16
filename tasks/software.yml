@@ -48,5 +48,7 @@
       app: Spectacle
     - name: slack
       app: Slack
+    - name: iterm2
+      app: iTerm
   tags:
     - software

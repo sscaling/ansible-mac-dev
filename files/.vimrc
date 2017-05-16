@@ -1,6 +1,8 @@
 " Use :PlugInstall to install anything defined here
 call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Cannot get ultisnips working with deoplete/nvim
+" Plug 'SirVer/ultisnips'
 Plug 'fatih/molokai'
 Plug 'pearofducks/ansible-vim'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -13,6 +15,7 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 " Awesome status/tabline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" file browsing
 Plug 'scrooloose/nerdtree'
 call plug#end()
 
@@ -25,6 +28,16 @@ call plug#end()
 set noshowmatch                 " Do not show matching brackets by flickering
 set noshowmode                  " We show the mode with airline or lightline
 
+set showcmd   " The command we're typing
+
+set splitright                  " Split vertical windows right to the current windows
+set splitbelow                  " Split horizontal windows below to the current windows
+set encoding=utf-8              " Set default encoding to UTF-8
+
+set autoread                    " Automatically reread changed files without asking me anything
+
+
+
 " airline
 "let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
@@ -35,7 +48,7 @@ nmap <C-n> :NERDTreeToggle<CR>
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden=0
 
 let NERDTreeIgnore=['\.vim$', '\~$', '\.git$', '.DS_Store']
 
@@ -76,6 +89,8 @@ autocmd BufWritePre * StripWhitespace
 
 " ----- vim-go config
 let g:go_fmt_command = "goimports"
+let g:go_term_enabled = 1  " enables terminal for things like :GoTest
+let g:go_term_mode = "split" " split terminal horizontally
 " All lists are quickfix (rather than mixing in location lists)
 let g:go_list_type = "quickfix"
 " use 4 spaces for a tab
@@ -124,3 +139,24 @@ autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
+
+" Output function into a scratch buffer
+" http://vim.wikia.com/wiki/Capture_ex_command_output
+function! OutputSplitWindow(...)
+  " this function output the result of the Ex command into a split scratch buffer
+  let cmd = join(a:000, ' ')
+  let temp_reg = @"
+  redir @"
+  silent! execute cmd
+  redir END
+  let output = copy(@")
+  let @" = temp_reg
+  if empty(output)
+    echoerr "no output"
+  else
+    new
+    setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted
+    put! =output
+  endif
+endfunction
+command! -nargs=+ -complete=command Output call OutputSplitWindow(<f-args>)
