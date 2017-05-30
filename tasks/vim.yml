@@ -18,6 +18,14 @@
   tags:
     - vim
 
+- name: create dirs
+  file: path="{{ item }}" state=directory mode=0755
+  with_items:
+    - ~/.vim/autoload
+    - ~/.config/nvim/autoload
+  tags:
+    - vim
+
 - name: vim-plug
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -41,6 +49,7 @@
   git:
     repo: https://github.com/pearofducks/ansible-vim.git
     dest: ~/.vim/plugged/ansible-vim
+    update: no
   tags:
     - vim
 
@@ -48,6 +57,31 @@
   git:
     repo: git://github.com/tpope/vim-dispatch.git
     dest: ~/.vim/plugged/vim-dispatch
+    update: no
+  tags:
+    - vim
+
+- name: check for molokai color scheme
+  stat: path=~/.vim/colors/molokai.vim
+  register: download_molokai
+  tags:
+    - vim
+
+- name: download molokai color scheme
+  when: download_molokai.stat.exists
+  git:
+    repo: git://github.com/tomasr/molokai.git
+    dest: /tmp/molokai
+    update: no
+  register: install_molokai
+  tags:
+    - vim
+
+- name: install molokai color scheme
+  when: install_molokai is defined
+  copy:
+    src: /tmp/molokai/colors/molokai.vim
+    dest: ~/.vim/colors/molokai.vim
   tags:
     - vim
 
