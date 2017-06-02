@@ -18,23 +18,24 @@
 - name: Brew software
   command: /usr/local/bin/brew install {{ item }} creates=/usr/local/bin/{{ item }}
   with_items:
+    - bash-completion
     - git
-    - pt
     - go
     - gradle
     - jq
     - kafkacat
+    - maven
     - nload
     - nmap
     - node
     - openconnect
+    - pt
     - python
     - python3
     - sbt
     - tree
     - watch
     - wget
-    - bash-completion
   tags:
     - software
 

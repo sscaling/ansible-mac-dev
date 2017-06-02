@@ -1,26 +1,45 @@
-# Ansible Mac Dev
+Ansible Mac Dev
+===============
 
 basic setup for Mac dev machine
 
-## Requirements
+Requirements
+------------
 
-* xcode tools
+-	xcode tools
 
-	xcode-select --install
+	```
+	    xcode-select --install
+	```
 
-* Ansible 2.0
+-	Ansible 2.0
 
-	easy_install pip
-	pip install ansible==2.3.0.0 --user python
+	```
+	    easy_install pip
+	    pip install ansible==2.3.0.0 --user python
+	```
 
-## Deploy
+Deploy
+------
 
-	ansible-playbook -i localhost dev-setup.yml
+```
+ansible-playbook -i localhost dev-setup.yml
+```
+
+### Post setup
+
+Following the installation, open Vim and run
+
+```
+:PlugInstall
+:GoInstall
+```
 
 ### Vimrc
 
 As this constantly changes, there is a useful 'vimrc' tag, to only update .vimrc
 
-# TODO
+TODO
+====
 
-* DNSMasq
+-	DNSMasq

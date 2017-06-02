@@ -68,7 +68,7 @@
     - vim
 
 - name: download molokai color scheme
-  when: download_molokai.stat.exists
+  when: not download_molokai.stat.exists
   git:
     repo: git://github.com/tomasr/molokai.git
     dest: /tmp/molokai
