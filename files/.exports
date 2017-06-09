@@ -31,6 +31,5 @@ export DBUS_SESSION_BUS_ADDRESS
 # turn on go vendoring experiment
 export GO15VENDOREXPERIMENT=1
 
-export DOCKER_CONTENT_TRUST=1
 
 
