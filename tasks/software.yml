@@ -22,6 +22,7 @@
     - git
     - go
     - gradle
+    - htop
     - jq
     - kafkacat
     - maven
@@ -38,6 +39,7 @@
     - wget
   tags:
     - software
+    - cli
 
 - name: Brew Cask Software
   command: /usr/local/bin/brew cask install {{ item.name }}
