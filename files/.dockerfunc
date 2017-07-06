@@ -39,4 +39,20 @@ dockerip() {
   docker inspect --format '{{printf "%s %s" .NetworkSettings.IPAddress .Name  }}' `docker ps | grep -v CONTAINER | awk '{print $NF}'`
 }
 
+dcl() {
+  TARGET=$@
+  if [ -z "$TARGET" ]; then
+    TARGET=docker-compose.yml
+  fi
+  sed -nE 's/^  ([a-z].*):/\1/p' $TARGET
+}
+
+dcr() {
+  TARGET=$@
+  if [ -z "$TARGET" ]; then
+    echo "Need to specify a target to restart"
+    exit 1
+  fi
+  docker-compose stop $TARGET && docker-compose rm -vf $TARGET && docker-compose up -d $TARGET
+}
 
