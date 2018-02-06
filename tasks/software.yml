@@ -22,7 +22,8 @@
     - git
     - go
     - gradle
-    - htop
+# Currently incompatible with high-sierra
+#    - htop
     - jq
     - kafkacat
     - maven
@@ -30,10 +31,14 @@
     - nmap
     - node
     - openconnect
+    - protobuf
     - pt
     - python
     - python3
+    - s3cmd
+    - socat
     - sbt
+    - telnet
     - tree
     - watch
     - wget
