@@ -59,5 +59,7 @@
       app: Slack
     - name: iterm2
       app: iTerm
+    - name: visual-studio-code
+      app: Visual Studio Code
   tags:
     - software
