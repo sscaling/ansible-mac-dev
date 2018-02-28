@@ -19,6 +19,7 @@
   command: /usr/local/bin/brew install {{ item }} creates=/usr/local/bin/{{ item }}
   with_items:
     - bash-completion
+    - dep
     - git
     - go
     - gradle
