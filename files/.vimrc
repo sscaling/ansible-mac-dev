@@ -160,3 +160,5 @@ function! OutputSplitWindow(...)
   endif
 endfunction
 command! -nargs=+ -complete=command Output call OutputSplitWindow(<f-args>)
+
+autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=ansible
