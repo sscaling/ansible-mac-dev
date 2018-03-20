@@ -58,7 +58,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " deoplete
 if has('nvim')
   let g:python3_host_prog = '/usr/local/bin/python3'
-  let g:deoplete#enable_at_startup = 1
+  call deoplete#enable()
   let g:deoplete#ignore_sources = {}
   let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file', 'neosnippet']
   let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
