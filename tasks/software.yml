@@ -40,6 +40,7 @@
     - htop 
     - jq
     - kafkacat
+    - libvirt
     - maven
     - nload
     - nmap
@@ -51,6 +52,7 @@
     - socat
     - sbt
     - telnet
+    - tmux
     - tree
     - watch
     - wget
