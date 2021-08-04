@@ -18,7 +18,7 @@ export HISTCONTROL=ignoredups;
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
-export DBUS_SESSION_BUS_ADDRESS
+#export DBUS_SESSION_BUS_ADDRESS
 #DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/user/$(id -u)/bus;
 
 #export TODOTXT_DEFAULT_ACTION=ls
@@ -29,7 +29,10 @@ export DBUS_SESSION_BUS_ADDRESS
 #export QT_DEVICE_PIXEL_RATIO=2
 
 # turn on go vendoring experiment
-export GO15VENDOREXPERIMENT=1
+#export GO15VENDOREXPERIMENT=1
+
+# Ignore >MacOS Catalina zsh warnings
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 
 

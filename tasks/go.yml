@@ -3,7 +3,7 @@
 - name: Go workspace
   shell: mkdir -p ~/go/{{item}}
   args:
-    creates: /usr/local/bin/brew
+    creates: ~/go
   with_items:
     - src
   tags:

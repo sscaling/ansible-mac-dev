@@ -32,7 +32,7 @@
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     dest: "{{ item }}"
     mode: 0440
-  items:
+  with_items:
     - ~/.vim/autoload/plug.vim
     - ~/.config/nvim/autoload/plug.vim
   tags:

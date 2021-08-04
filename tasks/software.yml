@@ -2,18 +2,31 @@
 
 # http://brew.sh/
 - name: Brew
-  shell: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   args:
     creates: /usr/local/bin/brew
   tags:
     - software
 
-- name: Java
-  command: /usr/local/bin/brew cask install java
+- name: Sdkman
+  shell: curl -s "https://get.sdkman.io" | bash
   args:
-    creates: /usr/bin/java
+    creates: "{{ user_home }}/.sdkman"
   tags:
     - software
+    - java
+  register: sdkman
+
+- name: Java 
+  when: sdkman is succeeded
+  shell: source "{{ user_home }}/.sdkman/bin/sdkman-init.sh" && sdk install java {{ item }}
+  args:
+    creates: "{{ user_home }}/.sdkman/candidates/java/{{ item }}"
+  with_items:
+    - 8.0.292.hs-adpt
+  tags:
+    - software
+    - java
 
 - name: Brew software
   command: /usr/local/bin/brew install {{ item }} creates=/usr/local/bin/{{ item }}
@@ -23,8 +36,7 @@
     - git
     - go
     - gradle
-# Currently incompatible with high-sierra
-#    - htop
+    - htop 
     - jq
     - kafkacat
     - maven
@@ -34,8 +46,6 @@
     - openconnect
     - protobuf
     - pt
-    - python
-    - python3
     - s3cmd
     - socat
     - sbt
@@ -48,7 +58,7 @@
     - cli
 
 - name: Brew Cask Software
-  command: /usr/local/bin/brew cask install {{ item.name }}
+  command: /usr/local/bin/brew install {{ item.name }}
   args:
     creates: /Applications/{{ item.app }}.app
   with_items:
@@ -58,8 +68,6 @@
       app: Spectacle
     - name: slack
       app: Slack
-    - name: iterm2
-      app: iTerm
     - name: visual-studio-code
       app: Visual Studio Code
   tags:
