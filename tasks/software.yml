@@ -34,6 +34,7 @@
     - bash-completion
     - dep
     - git
+    - git-lfs
     - go
     - gradle
     - htop 
@@ -58,7 +59,7 @@
     - cli
 
 - name: Brew Cask Software
-  command: /usr/local/bin/brew install {{ item.name }}
+  command: /usr/local/bin/brew install --cask {{ item.name }}
   args:
     creates: /Applications/{{ item.app }}.app
   with_items:

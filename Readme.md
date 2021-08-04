@@ -27,6 +27,7 @@ Requirements
 	    pip3 install virtualenvwrapper
 		export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/versions/3.7.3/bin/python
 		mkvirtualenv -p $(pyenv prefix 3.7.3)/bin/python ansible-mac-dev
+		# Make sure virtual env is activated
 	    pip install ansible==2.3.0.0 --user python
 		# Or just pip install ansible
 	```
